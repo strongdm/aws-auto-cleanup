@@ -1,7 +1,7 @@
 service: auto-cleanup-app
 
 custom:
-  log_level: INFO # DEBUG for dev | INFO for prod
+  log_level: DEBUG # DEBUG for dev | INFO for prod
   region: ${opt:region, "ap-southeast-2"} # AWS deployment region
   pythonRequirements:
     layer:
@@ -257,7 +257,7 @@ functions:
         Ref: WhitelistTable
     events:
       - schedule:
-          rate: rate(3 days)
+          rate: rate(1 day)
           enabled: true
 
 resources:
@@ -381,3 +381,4 @@ resources:
 plugins:
   - serverless-pseudo-parameters
   - serverless-python-requirements
+  - serverless-finch

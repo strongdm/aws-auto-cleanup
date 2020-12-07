@@ -3,7 +3,6 @@
   "description": "Auto Cleanup Web",
   "version": "1.3.0",
   "private": true,
-  "dependencies": {},
   "devDependencies": {
     "serverless-finch": "^2.6.0"
   },
