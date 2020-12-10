@@ -196,7 +196,7 @@
                 </button>
                 <button
                   class="button is-danger"
-                  v-if="item.expiration < '4102444800'"
+                  v-if="!item.id.startsWith('auto-cleanup')"
                   v-on:click="openWhitelistDeletePopup( item.resource_id )"
                 >
                   <span class="icon">
@@ -527,7 +527,7 @@
                   <div class="control has-icons-left">
                     <input
                       class="input"
-                      placeholder="@example.com"
+                      placeholder="@strongdm.com"
                       required
                       tabindex="4"
                       type="email"
@@ -554,6 +554,20 @@
                     </span>
                   </div>
                 </div>
+
+                <div class="field">
+                  <label class="label">Do you want to make the resource permanent?</label>
+                  <div class="control has-icons-left">
+                    <input
+                      id="selectPermanent"
+                      type="checkbox"
+                      v-model="selectedPermanent"
+                      value="true"
+                    />
+                    <label for="selectPermanent">Yes I do</label>
+                  </div>
+                </div>
+
               </section>
               <footer class="modal-card-foot">
                 <button class="button is-success" tabindex="6">Add</button>
