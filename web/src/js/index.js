@@ -30,6 +30,7 @@ var app = new Vue({
     resourceIdPlaceholder: "",
     resourceList: [],
     selectedComment: "",
+    selectedPermanent: false,
     selectedExpiration: 0,
     selectedOwner: "",
     selectedResource: "",
@@ -64,6 +65,7 @@ var app = new Vue({
       this.selectedResource = "";
       this.selectedResourceId = "";
       this.selectedService = "";
+      this.selectedPermanent = false;
       this.showWhitelistPopup = false;
     },
     createWhitelistEntry: function () {
@@ -76,6 +78,7 @@ var app = new Vue({
           this.selectedResourceId,
         owner: this.selectedOwner,
         comment: this.selectedComment,
+        permanent: this.selectedPermanent
       };
 
       sendApiRequest(convertJsonToGet(formData), "POST");
