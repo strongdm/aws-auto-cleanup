@@ -1,6 +1,8 @@
 import datetime
-
 import dateutil.parser
+import boto3
+import os
+from botocore.exceptions import ClientError
 
 
 class Helper:
@@ -48,3 +50,45 @@ class Helper:
                 "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             }
         )
+
+    @staticmethod
+    def parse_tags(tags, resource_id):
+        # tags = [{'Key': 'ExpiryDate', 'Value': '2500-03-11'}, {'Key': 'Creator', 'Value': 'John'}]
+        # Check if the tags both contain Creator and ExpiryDate
+        if any(x["Key"] == "ExpiryDate" for x in tags):
+            if any(x["Key"] == "Creator" for x in tags):
+                response = {}
+
+                for tag in tags:
+                    if tag["Key"] == "ExpiryDate":
+                        try:
+                            response["date"] = str(
+                                datetime.datetime.strptime(
+                                    tag["Value"], "%Y-%m-%d"
+                                ).timestamp()
+                            )
+                        except Exception as e:
+                            print(f"Could not parse date. Error: {e}")
+                    if tag["Key"] == "Creator":
+                        response["creator"] = tag["Value"]
+
+                if {"date", "creator"} <= response.keys():
+                    Helper.insert_whitelist(
+                        response["date"], response["creator"], resource_id
+                    )
+
+    @staticmethod
+    def insert_whitelist(date, creator, resource_id):
+        try:
+            boto3.client("dynamodb").put_item(
+                TableName=os.environ.get("WHITELISTTABLE"),
+                Item={
+                    "resource_id": {"S": resource_id},
+                    "expiration": {"N": date},
+                    "owner": {"S": creator},
+                    "comment": {"S": ""},
+                },
+            )
+            return True
+        except ClientError as e:
+            print(f"Error inserting record into whitelist. ({e})")
