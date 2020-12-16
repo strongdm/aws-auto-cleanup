@@ -241,6 +241,10 @@ class EC2Cleanup:
                     resource_state = resource.get("State").get("Name")
                     resource_action = None
 
+                    # resource_tags = resource.get("Tags")
+                    # if resource_tags:
+                    #     Helper.parse_tags(resource_tags, "ec2:instance:" + resource_id)
+
                     if resource_id not in self.whitelist.get("ec2", {}).get(
                         "instance", []
                     ):

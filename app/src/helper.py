@@ -58,7 +58,7 @@ class Helper:
         if any(x["Key"] == "ExpiryDate" for x in tags):
             if any(x["Key"] == "Creator" for x in tags):
                 response = {}
-
+                print(f"Tags contained: {tags}")
                 for tag in tags:
                     if tag["Key"] == "ExpiryDate":
                         try:
@@ -80,15 +80,16 @@ class Helper:
     @staticmethod
     def insert_whitelist(date, creator, resource_id):
         try:
-            boto3.client("dynamodb").put_item(
-                TableName=os.environ.get("WHITELISTTABLE"),
-                Item={
-                    "resource_id": {"S": resource_id},
-                    "expiration": {"N": date},
-                    "owner": {"S": creator},
-                    "comment": {"S": ""},
-                },
-            )
+            print("Inserted!")
+            # boto3.client("dynamodb").put_item(
+            #     TableName=os.environ.get("WHITELISTTABLE"),
+            #     Item={
+            #         "resource_id": {"S": resource_id},
+            #         "expiration": {"N": date},
+            #         "owner": {"S": creator},
+            #         "comment": {"S": ""},
+            #     },
+            # )
             return True
         except ClientError as e:
             print(f"Error inserting record into whitelist. ({e})")

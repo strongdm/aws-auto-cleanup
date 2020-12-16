@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "5"
+      "N": "11"
     }
   },
   {
@@ -30,7 +30,7 @@
             "app": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "app_name"
@@ -47,7 +47,7 @@
             "stack": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "stack_name"
@@ -64,7 +64,7 @@
             "log_group": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "log_group_name"
@@ -81,7 +81,7 @@
             "table": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "table_name"
@@ -98,7 +98,7 @@
             "address": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "allocation_id"
@@ -108,7 +108,7 @@
             "image": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "image_id"
@@ -134,7 +134,7 @@
             "security_group": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "group_id"
@@ -144,7 +144,7 @@
             "snapshot": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "snapshot_id"
@@ -157,7 +157,7 @@
             "volume": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "volume_id"
@@ -174,7 +174,7 @@
             "image": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "image_digest"
@@ -187,7 +187,7 @@
             "repository": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "repository_name"
@@ -204,7 +204,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "cluster_name"
@@ -214,7 +214,7 @@
             "service": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "service_name"
@@ -231,7 +231,7 @@
             "file_system": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "file_system_id"
@@ -248,7 +248,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "cluster_name"
@@ -261,7 +261,7 @@
             "fargate_profile": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "fargate_profile_name"
@@ -274,7 +274,7 @@
             "node_group": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "node_group_name"
@@ -291,7 +291,7 @@
             "application": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "application_name"
@@ -308,7 +308,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "cache_cluster_id"
@@ -321,7 +321,7 @@
             "replication_group": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "replication_group_id"
@@ -338,7 +338,7 @@
             "domain": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "domain_name"
@@ -355,7 +355,7 @@
             "load_balancer": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "load_balancer_name"
@@ -372,7 +372,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "id"
@@ -389,7 +389,7 @@
             "crawler": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "crawler_name"
@@ -402,7 +402,7 @@
             "database": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "database_name"
@@ -415,7 +415,7 @@
             "dev_endpoint": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "endpoint_name"
@@ -432,7 +432,7 @@
             "policy": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "policy_name"
@@ -445,7 +445,7 @@
             "role": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "role_name"
@@ -462,7 +462,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "cluster_name"
@@ -479,7 +479,7 @@
             "stream": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "stream_name"
@@ -496,7 +496,7 @@
             "function": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "function_name"
@@ -513,7 +513,7 @@
             "instance": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "db_instance_identifier"
@@ -526,7 +526,7 @@
             "snapshot": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "db_snapshot_name"
@@ -543,7 +543,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "cluster_identifier"
@@ -556,7 +556,7 @@
             "snapshot": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "snapshot_identifier"
@@ -573,7 +573,7 @@
             "bucket": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "bucket_name"
@@ -590,7 +590,7 @@
             "endpoint": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "endpoint_name"
@@ -603,7 +603,7 @@
             "notebook_instance": {
               "M": {
                 "clean": {
-                  "BOOL": true
+                  "BOOL": false
                 },
                 "id": {
                   "S": "notebook_instance_name"
@@ -627,28 +627,28 @@
         "af-south-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "ap-east-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "ap-northeast-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "ap-northeast-2": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
@@ -662,28 +662,28 @@
         "ap-south-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "ap-southeast-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "ap-southeast-2": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "ca-central-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
@@ -704,77 +704,77 @@
         "eu-central-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "eu-north-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "eu-south-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "eu-west-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "eu-west-2": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "eu-west-3": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "me-south-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "sa-east-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "us-east-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "us-east-2": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
         "us-west-1": {
           "M": {
             "clean": {
-              "BOOL": true
+              "BOOL": false
             }
           }
         },
