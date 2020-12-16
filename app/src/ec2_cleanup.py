@@ -73,6 +73,11 @@ class EC2Cleanup:
                 resource_id = resource.get("AllocationId")
                 resource_action = None
 
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "ec2:address:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("ec2", {}).get("address", []):
                     if resource.get("AssociationId") is None:
                         try:
@@ -156,6 +161,11 @@ class EC2Cleanup:
                 resource_id = resource.get("ImageId")
                 resource_date = resource.get("CreationDate")
                 resource_action = None
+
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "ec2:image:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("ec2", {}).get("image", []):
                     delta = Helper.get_day_delta(resource_date)
@@ -241,9 +251,10 @@ class EC2Cleanup:
                     resource_state = resource.get("State").get("Name")
                     resource_action = None
 
-                    # resource_tags = resource.get("Tags")
-                    # if resource_tags:
-                    #     Helper.parse_tags(resource_tags, "ec2:instance:" + resource_id)
+                    resource_tags = resource.get("Tags")
+                    if resource_tags:
+                        Helper.parse_tags(resource_tags, "ec2:instance:" + resource_id)
+                    self.whitelist = Helper.get_whitelist()
 
                     if resource_id not in self.whitelist.get("ec2", {}).get(
                         "instance", []
@@ -472,6 +483,11 @@ class EC2Cleanup:
                 resource_date = resource.get("StartTime")
                 resource_action = None
 
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "ec2:image:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("ec2", {}).get("snapshot", []):
                     snapshots_in_use = []
                     try:
@@ -582,6 +598,11 @@ class EC2Cleanup:
                 resource_id = resource.get("VolumeId")
                 resource_date = resource.get("CreateTime")
                 resource_action = None
+
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "ec2:image:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("ec2", {}).get("volume", []):
                     if resource.get("Attachments") == []:
