@@ -174,20 +174,20 @@
               <td style="white-space: nowrap">{{ item.resource }}</td>
               <td style="white-space: nowrap">{{ item.id }}</td>
               <td style="white-space: nowrap">
-                <span v-if="item.expiration < '32503680000'"
+                <span v-if="item.expiration < 32503680000"
                   >{{ item.expiration_readable }}</span
                 >
               </td>
               <td style="white-space: nowrap">{{ item.owner }}</td>
               <td>{{ item.comment }}</td>
               <td>
-                <span v-if="item.expiration < '32503680000'">Temporary</span>
-                <span v-if="item.expiration >= '32503680000'">Permanent</span>
+                <span v-if="item.expiration < 32503680000">Temporary</span>
+                <span v-if="item.expiration >= 32503680000">Permanent</span>
               </td>
               <td style="white-space: nowrap">
                 <button
                   class="button is-warning"
-                  v-if="item.expiration < '32503680000'"
+                  v-if="item.expiration < 32503680000"
                   v-on:click="extendWhitelistEntry( item.row_id )"
                 >
                   <span class="icon">

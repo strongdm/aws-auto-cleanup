@@ -305,6 +305,7 @@ function getWhitelist() {
       app.whitelist = whitelistRaw.map((item) => {
         let readableDate = dayjs.unix(item["expiration"]).tz(dayjs.tz.guess());
 
+        item["expiration"] = Number.parseInt(item["expiration"], 10);
         item["row_id"] = i++;
         item["service"] = item["resource_id"].split(":", 3)[0];
         item["resource"] = item["resource_id"].split(":", 3)[1];
