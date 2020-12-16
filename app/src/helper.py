@@ -3,7 +3,7 @@ import dateutil.parser
 import boto3
 import os
 from botocore.exceptions import ClientError
-
+from dynamodb_json import json_util as dynamodb_json
 
 class Helper:
     def __init__(self):
@@ -55,10 +55,9 @@ class Helper:
     def parse_tags(tags, resource_id):
         # tags = [{'Key': 'ExpiryDate', 'Value': '2500-03-11'}, {'Key': 'Creator', 'Value': 'John'}]
         # Check if the tags both contain Creator and ExpiryDate
-        if any(x["Key"] == "ExpiryDate" for x in tags):
-            if any(x["Key"] == "Creator" for x in tags):
+        if any(tag_list.get("Key") in "ExpiryDate" for tag_list in tags):
+            if any(tag_list.get("Key") in "Creator" for tag_list in tags):
                 response = {}
-                print(f"Tags contained: {tags}")
                 for tag in tags:
                     if tag["Key"] == "ExpiryDate":
                         try:
@@ -68,28 +67,52 @@ class Helper:
                                 ).timestamp()
                             )
                         except Exception as e:
-                            print(f"Could not parse date. Error: {e}")
+                            print(f"Could not parse date on resource: {resource_id}. Error: {e}")
                     if tag["Key"] == "Creator":
                         response["creator"] = tag["Value"]
+                    if tag["Key"] == "Name":
+                        response["name"] = tag["Value"]
 
                 if {"date", "creator"} <= response.keys():
-                    Helper.insert_whitelist(
-                        response["date"], response["creator"], resource_id
-                    )
+                    Helper.insert_whitelist(response, resource_id)
 
     @staticmethod
-    def insert_whitelist(date, creator, resource_id):
+    def insert_whitelist(parsed_tags, resource_id):
         try:
-            print("Inserted!")
-            # boto3.client("dynamodb").put_item(
-            #     TableName=os.environ.get("WHITELISTTABLE"),
-            #     Item={
-            #         "resource_id": {"S": resource_id},
-            #         "expiration": {"N": date},
-            #         "owner": {"S": creator},
-            #         "comment": {"S": ""},
-            #     },
-            # )
+            comment = ""
+
+            if "name" in parsed_tags:
+                comment = f"Name: {parsed_tags['name']}"
+
+            boto3.client("dynamodb").put_item(
+                TableName=os.environ.get("WHITELISTTABLE"),
+                Item={
+                    "resource_id": {"S": resource_id},
+                    "expiration": {"N": parsed_tags["date"]},
+                    "owner": {"S": parsed_tags["creator"]},
+                    "comment": {"S": comment},
+                },
+            )
             return True
         except ClientError as e:
             print(f"Error inserting record into whitelist. ({e})")
+
+    @staticmethod
+    def get_whitelist():
+        whitelist = {}
+        try:
+            for record in boto3.client("dynamodb").scan(
+                TableName=os.environ.get("WHITELISTTABLE")
+            )["Items"]:
+                record_json = dynamodb_json.loads(record, True)
+                parsed_resource_id = Helper.parse_resource_id(
+                    record_json.get("resource_id")
+                )
+
+                whitelist.setdefault(parsed_resource_id.get("service"), {}).setdefault(
+                    parsed_resource_id.get("resource_type"), set()
+                ).add(parsed_resource_id.get("resource"))
+        except Exception as e:
+            print(f"Could not read DynamoDB table: {os.environ.get('WHITELISTTABLE')}")
+            print(f"Error: {e}")
+        return whitelist
