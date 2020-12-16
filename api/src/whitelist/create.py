@@ -89,7 +89,7 @@ def lambda_handler(event, context):
     )
 
     if parameters["permanent"] == "true":
-        expiration = 4102444800
+        expiration = 32503680000
     else:
         expiration = int(time.time()) + (resource_ttl * 86400)
 
