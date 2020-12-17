@@ -231,7 +231,7 @@
             "file_system": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "file_system_id"

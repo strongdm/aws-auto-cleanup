@@ -59,6 +59,11 @@ class EFSCleanup:
                 resource_number_of_mount_targets = resource.get("NumberOfMountTargets")
                 resource_action = None
 
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "efs:file_system:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("efs", {}).get(
                     "file_system", []
                 ):
