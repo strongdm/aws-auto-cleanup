@@ -58,6 +58,20 @@ class LambdaCleanup:
                 resource_date = resource.get("LastModified")
                 resource_action = None
 
+                resource_arn = resource.get("FunctionArn")
+                tag_list = self.client_lambda.list_tags(Resource=resource_arn)
+                resource_tags = tag_list.get("Tags")
+
+                if resource_tags:
+                    tag_list = []
+                    if "ExpiryDate" in resource_tags:
+                        tag_list.append({"Key": "ExpiryDate", "Value": resource_tags.get("ExpiryDate")})
+                    if "Creator" in resource_tags:
+                        tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
+                    tag_list.append({"Key": "Name", "Value": resource_id})
+                    Helper.parse_tags(tag_list, "lambda:function:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("lambda", {}).get(
                     "function", []
                 ):
