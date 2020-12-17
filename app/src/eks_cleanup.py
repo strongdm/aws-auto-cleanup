@@ -74,6 +74,18 @@ class EKSCleanup:
                 resource_date = resource_details.get("createdAt")
                 resource_action = None
 
+                resource_tags = resource_details.get("tags")
+
+                if resource_tags:
+                    tag_list = []
+                    if "ExpiryDate" in resource_tags:
+                        tag_list.append({"Key": "ExpiryDate", "Value": resource_tags.get("ExpiryDate")})
+                    if "Creator" in resource_tags:
+                        tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
+                    tag_list.append({"Key": "Name", "Value": resource_id})
+                    Helper.parse_tags(tag_list, "eks:cluster:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("eks", {}).get("cluster", []):
                     list_fargate_profiles = self.client_eks.list_fargate_profiles(
                         clusterName=resource_id,
@@ -185,6 +197,18 @@ class EKSCleanup:
                 resource_date = resource_details.get("createdAt")
                 resource_action = None
 
+                resource_tags = resource_details.get("tags")
+
+                if resource_tags:
+                    tag_list = []
+                    if "ExpiryDate" in resource_tags:
+                        tag_list.append({"Key": "ExpiryDate", "Value": resource_tags.get("ExpiryDate")})
+                    if "Creator" in resource_tags:
+                        tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
+                    tag_list.append({"Key": "Name", "Value": resource_id})
+                    Helper.parse_tags(tag_list, "eks:fargate_profile:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("eks", {}).get(
                     "fargate_profile", []
                 ):
@@ -289,6 +313,18 @@ class EKSCleanup:
                 resource_id = resource_details.get("nodegroupName")
                 resource_date = resource_details.get("createdAt")
                 resource_action = None
+
+                resource_tags = resource_details.get("tags")
+
+                if resource_tags:
+                    tag_list = []
+                    if "ExpiryDate" in resource_tags:
+                        tag_list.append({"Key": "ExpiryDate", "Value": resource_tags.get("ExpiryDate")})
+                    if "Creator" in resource_tags:
+                        tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
+                    tag_list.append({"Key": "Name", "Value": resource_id})
+                    Helper.parse_tags(tag_list, "eks:nodegroup:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("eks", {}).get(
                     "nodegroup", []
