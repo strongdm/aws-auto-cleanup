@@ -187,6 +187,7 @@ provider:
       Action:
         - lambda:DeleteFunction
         - lambda:ListFunctions
+        - lambda:ListTags
       Resource: "*"
     - Effect: Allow
       Action:
