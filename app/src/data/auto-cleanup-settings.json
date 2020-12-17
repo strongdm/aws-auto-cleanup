@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "24"
+      "N": "25"
     }
   },
   {
@@ -573,7 +573,7 @@
             "bucket": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "bucket_name"

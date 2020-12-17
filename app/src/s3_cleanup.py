@@ -66,6 +66,20 @@ class S3Cleanup:
                 resource_date = resource.get("CreationDate")
                 resource_action = None
 
+                resource_tags = []
+
+                try:
+                    tag = self.client_s3.get_bucket_tagging(Bucket=resource_id)
+                    resource_tags = tag.get("TagSet")
+                except Exception as e:
+                    self.logging.error(f"Could not get bucket tags for: {resource_id}")
+
+                if resource_tags:
+                    bucket_name = {"Key": "Name", "Value": resource_id}
+                    resource_tags.append(bucket_name)
+                    Helper.parse_tags(resource_tags, "s3:bucket:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("s3", {}).get("bucket", []):
                     delta = Helper.get_day_delta(resource_date)
 
