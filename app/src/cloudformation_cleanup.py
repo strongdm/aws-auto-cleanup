@@ -91,6 +91,11 @@ class CloudFormationCleanup:
         resource_protection = True  # resource.get("EnableTerminationProtection")
         resource_action = None
 
+        resource_tags = resource.get("Tags")
+        if resource_tags:
+            Helper.parse_tags(resource_tags, "cloudformation:stack:" + resource_id)
+        self.whitelist = Helper.get_whitelist()
+
         if resource_id not in self.whitelist.get("cloudformation", {}).get("stack", []):
             delta = Helper.get_day_delta(resource_date)
             if delta.days > ttl_days:
