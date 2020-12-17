@@ -61,6 +61,14 @@ class RDSCleanup:
                 resource_date = resource.get("InstanceCreateTime")
                 resource_action = None
 
+                resource_tags = resource.get("TagList")
+
+                if resource_tags:
+                    rds_name = {"Key": "Name", "Value": resource_id}
+                    resource_tags.append(rds_name)
+                    Helper.parse_tags(resource_tags, "rds:instance:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("rds", {}).get("instance", []):
                     delta = Helper.get_day_delta(resource_date)
 
@@ -164,6 +172,14 @@ class RDSCleanup:
                 resource_id = resource.get("DBSnapshotIdentifier")
                 resource_date = resource.get("SnapshotCreateTime")
                 resource_action = None
+                
+                resource_tags = resource.get("TagList")
+
+                if resource_tags:
+                    snapshot_name = {"Key": "Name", "Value": resource_id}
+                    resource_tags.append(snapshot_name)
+                    Helper.parse_tags(resource_tags, "rds:snapshot:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("rds", {}).get("snapshot", []):
                     delta = Helper.get_day_delta(resource_date)

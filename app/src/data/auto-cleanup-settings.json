@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "21"
+      "N": "24"
     }
   },
   {
@@ -462,7 +462,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "cluster_name"
@@ -479,7 +479,7 @@
             "stream": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "stream_name"
@@ -496,7 +496,7 @@
             "function": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "function_name"
@@ -513,7 +513,7 @@
             "instance": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "db_instance_identifier"
@@ -526,7 +526,7 @@
             "snapshot": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "db_snapshot_name"
