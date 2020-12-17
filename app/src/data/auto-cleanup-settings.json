@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "17"
+      "N": "18"
     }
   },
   {
@@ -291,7 +291,7 @@
             "application": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "application_name"
@@ -308,7 +308,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "cache_cluster_id"
@@ -321,7 +321,7 @@
             "replication_group": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "replication_group_id"
@@ -338,7 +338,7 @@
             "domain": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "domain_name"

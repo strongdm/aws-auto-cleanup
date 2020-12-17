@@ -134,8 +134,10 @@ provider:
     - Effect: Allow
       Action:
         - es:DeleteElasticsearchDomain
-        - es:DescribeElasticsearchDomainConfig
+        - es:DescribeElasticsearchDomain
+        - es:ListTags
         - es:ListDomainNames
+        - es:DescribeElasticsearchDomainConfig
       Resource: "*"
     - Effect: Allow
       Action:
