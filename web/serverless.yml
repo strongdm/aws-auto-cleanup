@@ -1,7 +1,7 @@
 service: auto-cleanup-web
 
 custom:
-  log_level: DEBUG # DEBUG for dev | INFO for prod
+  log_level: INFO # DEBUG for dev | INFO for prod
   region: ${opt:region, "ap-southeast-2"} # AWS deployment region
   client:
     bucketName: reaper.strongdm.rocks
