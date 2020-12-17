@@ -61,11 +61,11 @@ class ELBCleanup:
                 resource_date = resource.get("CreatedTime")
                 resource_action = None
 
-                resource_tags = self.client_elb.describe_tags(ResourceArns=[resource_arn])
-                tag_list = resource_tags.get('TagDescriptions')[0].get('Tags')
+                describe_tags = self.client_elb.describe_tags(ResourceArns=[resource_arn])
+                resource_tags = describe_tags.get('TagDescriptions')[0].get('Tags')
 
-                if tag_list:
-                    Helper.parse_tags(tag_list, "elb:load_balancer:" + resource_id)
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "elb:load_balancer:" + resource_id)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("elb", {}).get(
