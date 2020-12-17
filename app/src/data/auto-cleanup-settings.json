@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "25"
+      "N": "35"
     }
   },
   {
@@ -248,7 +248,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "cluster_name"
@@ -261,7 +261,7 @@
             "fargate_profile": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "fargate_profile_name"
@@ -274,7 +274,7 @@
             "node_group": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "node_group_name"
@@ -590,7 +590,7 @@
             "endpoint": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "endpoint_name"
@@ -603,7 +603,7 @@
             "notebook_instance": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "notebook_instance_name"
@@ -627,28 +627,28 @@
         "af-south-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "ap-east-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "ap-northeast-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "ap-northeast-2": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
@@ -662,28 +662,28 @@
         "ap-south-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "ap-southeast-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "ap-southeast-2": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "ca-central-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
@@ -704,77 +704,77 @@
         "eu-central-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "eu-north-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "eu-south-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "eu-west-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "eu-west-2": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "eu-west-3": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "me-south-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "sa-east-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "us-east-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "us-east-2": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
         "us-west-1": {
           "M": {
             "clean": {
-              "BOOL": false
+              "BOOL": true
             }
           }
         },
