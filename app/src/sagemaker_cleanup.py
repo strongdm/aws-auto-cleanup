@@ -60,6 +60,14 @@ class SageMakerCleanup:
                 resource_date = resource.get("LastModifiedTime")
                 resource_action = None
 
+                resource_arn = resource.get("EndpointArn")
+                list_tags = self.client_sagemaker.list_tags(ResourceArn=resource_arn)
+                resource_tags = list_tags.get("Tags")
+
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "sagemaker:endpoint:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("sagemaker", {}).get(
                     "endpoint", []
                 ):
@@ -150,6 +158,16 @@ class SageMakerCleanup:
                 resource_status = resource.get("NotebookInstanceStatus")
                 resource_date = resource.get("LastModifiedTime")
                 resource_action = None
+
+                resource_arn = resource.get("NotebookInstanceArn")
+                list_tags = self.client_sagemaker.list_tags(ResourceArn=resource_arn)
+                resource_tags = list_tags.get("Tags")
+
+                if resource_tags:
+                    notebook_name = {"Key": "Name", "Value": resource_id}
+                    resource_tags.append(notebook_name)
+                    Helper.parse_tags(resource_tags, "sagemaker:notebook_instance:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("sagemaker", {}).get(
                     "notebook_instance", []
