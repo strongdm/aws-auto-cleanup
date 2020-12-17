@@ -69,6 +69,11 @@ class ECSCleanup:
                 )
                 resource_action = None
 
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "ecs:cluster:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if resource_id not in self.whitelist.get("ecs", {}).get("cluster", []):
                     if resource_status not in ("ACTIVE", "FAILED"):
                         self.logging.warn(
@@ -182,6 +187,11 @@ class ECSCleanup:
                     resource_status = resource_details.get("status")
                     resource_date = resource_details.get("createdAt")
                     resource_action = None
+
+                    resource_tags = resource_details.get("Tags")
+                    if resource_tags:
+                        Helper.parse_tags(resource_tags, "ecs:service:" + resource_id)
+                    self.whitelist = Helper.get_whitelist()
 
                     if resource_id not in self.whitelist.get("ecs", {}).get(
                         "service", []
