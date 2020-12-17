@@ -58,6 +58,11 @@ class RedshiftCleanup:
                 resource_id = resource.get("ClusterIdentifier")
                 resource_date = resource.get("ClusterCreateTime")
                 resource_action = None
+                
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "redshift:cluster:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("redshift", {}).get(
                     "cluster", []
@@ -145,6 +150,11 @@ class RedshiftCleanup:
                 resource_date = resource.get("SnapshotCreateTime")
                 resource_status = resource.get("Status")
                 resource_action = None
+                
+                resource_tags = resource.get("Tags")
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "redshift:snapshot:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("redshift", {}).get(
                     "snapshot", []

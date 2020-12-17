@@ -543,7 +543,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "cluster_identifier"
@@ -556,7 +556,7 @@
             "snapshot": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "snapshot_identifier"
