@@ -61,8 +61,8 @@ class SageMakerCleanup:
                 resource_action = None
 
                 resource_arn = resource.get("EndpointArn")
-                list_tags = self.client_sagemaker.list_tags(ResourceArn=resource_arn)
-                resource_tags = list_tags.get("Tags")
+                tag_list = self.client_sagemaker.list_tags(ResourceArn=resource_arn)
+                resource_tags = tag_list.get("Tags")
 
                 if resource_tags:
                     Helper.parse_tags(resource_tags, "sagemaker:endpoint:" + resource_id)
@@ -160,8 +160,8 @@ class SageMakerCleanup:
                 resource_action = None
 
                 resource_arn = resource.get("NotebookInstanceArn")
-                list_tags = self.client_sagemaker.list_tags(ResourceArn=resource_arn)
-                resource_tags = list_tags.get("Tags")
+                tag_list = self.client_sagemaker.list_tags(ResourceArn=resource_arn)
+                resource_tags = tag_list.get("Tags")
 
                 if resource_tags:
                     notebook_name = {"Key": "Name", "Value": resource_id}
