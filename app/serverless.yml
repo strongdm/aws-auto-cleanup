@@ -222,6 +222,7 @@ provider:
         - sagemaker:ListEndpoints
         - sagemaker:ListNotebookInstances
         - sagemaker:StopNotebookInstance
+        - sagemaker:ListTags
       Resource: "*"
     - Effect: Allow
       Action:
