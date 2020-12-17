@@ -2,8 +2,19 @@ import datetime
 import dateutil.parser
 import boto3
 import os
-from botocore.exceptions import ClientError
 from dynamodb_json import json_util as dynamodb_json
+import logging
+import sys
+
+logging.getLogger()
+logging.getLogger("boto3").setLevel(logging.ERROR)
+logging.getLogger("botocore").setLevel(logging.ERROR)
+logging.getLogger("urllib3").setLevel(logging.ERROR)
+logging.basicConfig(
+    format="[%(levelname)s] %(message)s (%(filename)s, %(funcName)s(), line %(lineno)d)",
+    level=os.environ.get("LOGLEVEL", "WARNING").upper(),
+)
+
 
 class Helper:
     def __init__(self):
@@ -66,8 +77,9 @@ class Helper:
                                     tag["Value"], "%Y-%m-%d"
                                 ).timestamp()
                             )
-                        except Exception as e:
-                            print(f"Could not parse date on resource: {resource_id}. Error: {e}")
+                        except:
+                            logging.error(f"Could not parse date on resource: {resource_id}")
+                            logging.error(sys.exc_info()[1])
                     if tag["Key"] == "Creator":
                         response["creator"] = tag["Value"]
                     if tag["Key"] == "Name":
@@ -94,8 +106,9 @@ class Helper:
                 },
             )
             return True
-        except ClientError as e:
-            print(f"Error inserting record into whitelist. ({e})")
+        except:
+            logging.error(f"Error inserting resource ID: {resource_id} into whitelist")
+            logging.error(sys.exc_info()[1])
 
     @staticmethod
     def get_whitelist():
@@ -112,7 +125,7 @@ class Helper:
                 whitelist.setdefault(parsed_resource_id.get("service"), {}).setdefault(
                     parsed_resource_id.get("resource_type"), set()
                 ).add(parsed_resource_id.get("resource"))
-        except Exception as e:
-            print(f"Could not read DynamoDB table: {os.environ.get('WHITELISTTABLE')}")
-            print(f"Error: {e}")
+        except:
+            logging.error(f"Could not read DynamoDB table: {os.environ.get('WHITELISTTABLE')}")
+            logging.error(sys.exc_info()[1])
         return whitelist
