@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "19"
+      "N": "21"
     }
   },
   {
@@ -372,7 +372,7 @@
             "cluster": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "id"
@@ -389,7 +389,7 @@
             "crawler": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "crawler_name"
@@ -402,7 +402,7 @@
             "database": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "database_name"
@@ -415,7 +415,7 @@
             "dev_endpoint": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "endpoint_name"
@@ -432,7 +432,7 @@
             "policy": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "policy_name"
@@ -445,7 +445,7 @@
             "role": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "role_name"

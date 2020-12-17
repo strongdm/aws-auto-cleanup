@@ -290,6 +290,13 @@ class IAMCleanup:
                 resource_date = resource.get("CreateDate")
                 resource_action = None
 
+                describe_role = self.client_iam.get_role(RoleName=resource_id)
+                resource_tags = describe_role.get("Role").get("Tags")
+
+                if resource_tags:
+                    Helper.parse_tags(resource_tags, "iam:role:" + resource_id)
+                self.whitelist = Helper.get_whitelist()
+
                 if "AWSServiceRoleFor" not in resource_id:
                     if resource_id not in self.whitelist.get("iam", {}).get("role", []):
                         delta = Helper.get_day_delta(resource_date)
@@ -481,7 +488,7 @@ class IAMCleanup:
                                                 resource_action = "ERROR"
                                             else:
                                                 self.logging.debug(
-                                                    f"IAM Instance Profile '{profile.get('InstanceProfileName')}' has been delete."
+                                                    f"IAM Instance Profile '{profile.get('InstanceProfileName')}' has been deleted."
                                                 )
 
                                     # delete role

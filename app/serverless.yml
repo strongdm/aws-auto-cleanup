@@ -170,6 +170,7 @@ provider:
         - iam:ListRolePolicies
         - iam:ListRoles
         - iam:RemoveRoleFromInstanceProfile
+        - iam:GetRole
       Resource: "*"
     - Effect: Allow
       Action:
