@@ -82,7 +82,7 @@ class ElasticsearchServiceCleanup:
                     domain_arn = self.client_elasticsearch.describe_elasticsearch_domain(DomainName=resource_id)
                     resource_tags = self.client_elasticsearch.list_tags(ARN=domain_arn.get("DomainStatus").get("ARN"))
 
-                    if resource_tags:
+                    if resource_tags['TagList']:
                         Helper.parse_tags(resource_tags['TagList'], "elasticsearch:domain:" + resource_id)
                     self.whitelist = Helper.get_whitelist()
 

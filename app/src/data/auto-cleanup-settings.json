@@ -4,7 +4,7 @@
       "S": "version"
     },
     "value": {
-      "N": "18"
+      "N": "19"
     }
   },
   {
@@ -355,7 +355,7 @@
             "load_balancer": {
               "M": {
                 "clean": {
-                  "BOOL": false
+                  "BOOL": true
                 },
                 "id": {
                   "S": "load_balancer_name"

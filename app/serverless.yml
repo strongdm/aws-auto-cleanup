@@ -125,6 +125,7 @@ provider:
         - elasticloadbalancing:DeleteLoadBalancer
         - elasticloadbalancing:DescribeLoadBalancers
         - elasticloadbalancing:ModifyLoadBalancerAttributes
+        - elasticloadbalancing:DescribeTags
       Resource: "*"
     - Effect: Allow
       Action:
