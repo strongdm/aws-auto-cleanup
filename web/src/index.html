@@ -165,6 +165,7 @@
               <th>Owner</th>
               <th>Comment</th>
               <th>Type</th>
+              <th>Region</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -184,6 +185,7 @@
                 <span v-if="item.expiration < 32503680000">Temporary</span>
                 <span v-if="item.expiration >= 32503680000">Permanent</span>
               </td>
+              <td style="white-space: nowrap">{{ item.region }}</td>
               <td style="white-space: nowrap">
                 <button
                   class="button is-warning"
