@@ -96,6 +96,9 @@ class Helper:
             if "name" in parsed_tags:
                 comment = f"Name: {parsed_tags['name']}"
 
+            boto_session = boto3.session.Session()
+            region = boto_session.region_name
+
             boto3.client("dynamodb").put_item(
                 TableName=os.environ.get("WHITELISTTABLE"),
                 Item={
@@ -103,6 +106,7 @@ class Helper:
                     "expiration": {"N": parsed_tags["date"]},
                     "owner": {"S": parsed_tags["creator"]},
                     "comment": {"S": comment},
+                    "region": {"S": region}
                 },
             )
             return True
