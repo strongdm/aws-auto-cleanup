@@ -69,7 +69,7 @@ class LambdaCleanup:
                     if "Creator" in resource_tags:
                         tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
                     tag_list.append({"Key": "Name", "Value": resource_id})
-                    Helper.parse_tags(tag_list, "lambda:function:" + resource_id)
+                    Helper.parse_tags(tag_list, "lambda:function:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("lambda", {}).get(

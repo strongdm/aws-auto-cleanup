@@ -61,7 +61,7 @@ class EFSCleanup:
 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "efs:file_system:" + resource_id)
+                    Helper.parse_tags(resource_tags, "efs:file_system:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("efs", {}).get(

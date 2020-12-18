@@ -86,7 +86,7 @@ class ElasticsearchServiceCleanup:
                     if resource_tags:
                         domain_name = {"Key": "Name", "Value": resource_id}
                         resource_tags.append(domain_name)
-                        Helper.parse_tags(resource_tags, "elasticsearch:domain:" + resource_id)
+                        Helper.parse_tags(resource_tags, "elasticsearch:domain:" + resource_id, self.region)
                     self.whitelist = Helper.get_whitelist()
 
                     if resource_id not in self.whitelist.get("elasticsearch", {}).get(

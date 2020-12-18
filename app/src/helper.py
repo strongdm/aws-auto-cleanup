@@ -63,7 +63,7 @@ class Helper:
         )
 
     @staticmethod
-    def parse_tags(tags, resource_id):
+    def parse_tags(tags, resource_id, region):
         # tags = [{'Key': 'ExpiryDate', 'Value': '2500-03-11'}, {'Key': 'Creator', 'Value': 'John'}]
         # Check if the tags both contain Creator and ExpiryDate
         if any(tag_list.get("Key") in "ExpiryDate" for tag_list in tags):
@@ -86,18 +86,15 @@ class Helper:
                         response["name"] = tag["Value"]
 
                 if {"date", "creator"} <= response.keys():
-                    Helper.insert_whitelist(response, resource_id)
+                    Helper.insert_whitelist(response, resource_id, region)
 
     @staticmethod
-    def insert_whitelist(parsed_tags, resource_id):
+    def insert_whitelist(parsed_tags, resource_id, region):
         try:
             comment = ""
 
             if "name" in parsed_tags:
-                comment = f"Name: {parsed_tags['name']}"
-
-            boto_session = boto3.session.Session()
-            region = boto_session.region_name
+                comment = f"{parsed_tags['name']}"
 
             boto3.client("dynamodb").put_item(
                 TableName=os.environ.get("WHITELISTTABLE"),

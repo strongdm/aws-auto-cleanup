@@ -65,7 +65,7 @@ class SageMakerCleanup:
                 resource_tags = tag_list.get("Tags")
 
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "sagemaker:endpoint:" + resource_id)
+                    Helper.parse_tags(resource_tags, "sagemaker:endpoint:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("sagemaker", {}).get(
@@ -166,7 +166,7 @@ class SageMakerCleanup:
                 if resource_tags:
                     notebook_name = {"Key": "Name", "Value": resource_id}
                     resource_tags.append(notebook_name)
-                    Helper.parse_tags(resource_tags, "sagemaker:notebook_instance:" + resource_id)
+                    Helper.parse_tags(resource_tags, "sagemaker:notebook_instance:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("sagemaker", {}).get(

@@ -65,7 +65,7 @@ class ELBCleanup:
                 resource_tags = describe_tags.get('TagDescriptions')[0].get('Tags')
 
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "elb:load_balancer:" + resource_id)
+                    Helper.parse_tags(resource_tags, "elb:load_balancer:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("elb", {}).get(

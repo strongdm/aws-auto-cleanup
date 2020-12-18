@@ -294,7 +294,7 @@ class IAMCleanup:
                 resource_tags = describe_role.get("Role").get("Tags")
 
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "iam:role:" + resource_id)
+                    Helper.parse_tags(resource_tags, "iam:role:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if "AWSServiceRoleFor" not in resource_id:

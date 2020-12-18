@@ -66,7 +66,7 @@ class RDSCleanup:
                 if resource_tags:
                     rds_name = {"Key": "Name", "Value": resource_id}
                     resource_tags.append(rds_name)
-                    Helper.parse_tags(resource_tags, "rds:instance:" + resource_id)
+                    Helper.parse_tags(resource_tags, "rds:instance:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("rds", {}).get("instance", []):
@@ -178,7 +178,7 @@ class RDSCleanup:
                 if resource_tags:
                     snapshot_name = {"Key": "Name", "Value": resource_id}
                     resource_tags.append(snapshot_name)
-                    Helper.parse_tags(resource_tags, "rds:snapshot:" + resource_id)
+                    Helper.parse_tags(resource_tags, "rds:snapshot:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("rds", {}).get("snapshot", []):

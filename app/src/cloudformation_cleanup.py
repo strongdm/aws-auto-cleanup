@@ -95,7 +95,7 @@ class CloudFormationCleanup:
         if resource_tags:
             stack_name = {"Key": "Name", "Value": resource_id}
             resource_tags.append(stack_name)
-            Helper.parse_tags(resource_tags, "cloudformation:stack:" + resource_id)
+            Helper.parse_tags(resource_tags, "cloudformation:stack:" + resource_id, self.region)
         self.whitelist = Helper.get_whitelist()
 
         if resource_id not in self.whitelist.get("cloudformation", {}).get("stack", []):

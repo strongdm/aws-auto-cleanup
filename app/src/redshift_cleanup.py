@@ -61,7 +61,7 @@ class RedshiftCleanup:
                 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "redshift:cluster:" + resource_id)
+                    Helper.parse_tags(resource_tags, "redshift:cluster:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("redshift", {}).get(
@@ -153,7 +153,7 @@ class RedshiftCleanup:
                 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "redshift:snapshot:" + resource_id)
+                    Helper.parse_tags(resource_tags, "redshift:snapshot:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("redshift", {}).get(

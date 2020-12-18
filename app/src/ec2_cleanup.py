@@ -75,7 +75,7 @@ class EC2Cleanup:
 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "ec2:address:" + resource_id)
+                    Helper.parse_tags(resource_tags, "ec2:address:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("ec2", {}).get("address", []):
@@ -164,7 +164,7 @@ class EC2Cleanup:
 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "ec2:image:" + resource_id)
+                    Helper.parse_tags(resource_tags, "ec2:image:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("ec2", {}).get("image", []):
@@ -253,7 +253,7 @@ class EC2Cleanup:
 
                     resource_tags = resource.get("Tags")
                     if resource_tags:
-                        Helper.parse_tags(resource_tags, "ec2:instance:" + resource_id)
+                        Helper.parse_tags(resource_tags, "ec2:instance:" + resource_id, self.region)
                     self.whitelist = Helper.get_whitelist()
 
                     if resource_id not in self.whitelist.get("ec2", {}).get(
@@ -485,7 +485,7 @@ class EC2Cleanup:
 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "ec2:snapshot:" + resource_id)
+                    Helper.parse_tags(resource_tags, "ec2:snapshot:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("ec2", {}).get("snapshot", []):
@@ -601,7 +601,7 @@ class EC2Cleanup:
 
                 resource_tags = resource.get("Tags")
                 if resource_tags:
-                    Helper.parse_tags(resource_tags, "ec2:volume:" + resource_id)
+                    Helper.parse_tags(resource_tags, "ec2:volume:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("ec2", {}).get("volume", []):

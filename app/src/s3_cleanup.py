@@ -77,7 +77,7 @@ class S3Cleanup:
                 if resource_tags:
                     bucket_name = {"Key": "Name", "Value": resource_id}
                     resource_tags.append(bucket_name)
-                    Helper.parse_tags(resource_tags, "s3:bucket:" + resource_id)
+                    Helper.parse_tags(resource_tags, "s3:bucket:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("s3", {}).get("bucket", []):

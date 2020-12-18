@@ -83,7 +83,7 @@ class EKSCleanup:
                     if "Creator" in resource_tags:
                         tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
                     tag_list.append({"Key": "Name", "Value": resource_id})
-                    Helper.parse_tags(tag_list, "eks:cluster:" + resource_id)
+                    Helper.parse_tags(tag_list, "eks:cluster:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("eks", {}).get("cluster", []):
@@ -206,7 +206,7 @@ class EKSCleanup:
                     if "Creator" in resource_tags:
                         tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
                     tag_list.append({"Key": "Name", "Value": resource_id})
-                    Helper.parse_tags(tag_list, "eks:fargate_profile:" + resource_id)
+                    Helper.parse_tags(tag_list, "eks:fargate_profile:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("eks", {}).get(
@@ -323,7 +323,7 @@ class EKSCleanup:
                     if "Creator" in resource_tags:
                         tag_list.append({"Key": "Creator", "Value": resource_tags.get("Creator")})
                     tag_list.append({"Key": "Name", "Value": resource_id})
-                    Helper.parse_tags(tag_list, "eks:nodegroup:" + resource_id)
+                    Helper.parse_tags(tag_list, "eks:nodegroup:" + resource_id, self.region)
                 self.whitelist = Helper.get_whitelist()
 
                 if resource_id not in self.whitelist.get("eks", {}).get(
